@@ -1,0 +1,6 @@
+@RabbitRateLimiter_HostAddress = http://localhost:5233
+
+GET {{RabbitRateLimiter_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
