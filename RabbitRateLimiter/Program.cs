@@ -1,5 +1,6 @@
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
+using RabbitRateLimiter.Consumer;
 using RabbitRateLimiter.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ builder.Services.AddMassTransit(x =>
         
         cfg.UseFilter(new RateLimitMiddleware(10, TimeSpan.FromMinutes(1)));
     });
+
+    x.AddConsumer<MessageProcessor>();
 });
 
 builder.Services.Configure<MassTransitHostOptions>(options => 
